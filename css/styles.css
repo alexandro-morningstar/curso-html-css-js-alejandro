@@ -1,0 +1,77 @@
+/*  ------ Selectores generales ------ */
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Poppins', 'sans-serif'; /*Utiliza poppins, y en caso de que no, usa cualquiera sans-serif*/
+}
+
+header, footer {
+    text-align: center; /*centramos el contenido del header y footer*/
+    width: 500px; /*Todo el contenedor header y footer tiene un ancho de 500px (no los elementos, la caja completa tiene ese ancho)*/
+    margin: 30px auto 0px auto; /* como la caja es mas pequeña que la resolución de la pantalla, definimos que el margen de los lados se distribuya automaticamente para que se centren las cajas completas, no el contenido */
+}
+
+main {
+    width: 500px;
+    margin: 20px auto 20px auto;
+    /* text-align: center; */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    font-size: 18px;
+}
+
+label {
+    display: block; /* Esto nos va a ayudar a jugar con el elemento en bloque */
+    margin-bottom: 10px
+}
+
+input{
+    display: inline; /* se trata como elemento de linea? */
+    font-family: 'Poppins', 'sans-serif';
+    width: 430px;
+    border: 1px solid #ced4da;
+    padding: 10px; /* Incrementa el tamaño interno (por ende crece) de la caja */
+    border-radius: 0px 5px 5px 0px;
+    font-weight: 200;
+    font-size: 18px;
+}
+
+input[type="submit"] { /* nota: los corchetes van pegados a la referencia o no aplica cambios */
+    background-color: #fd0c49;
+    color: #fff;
+    font-weight: 400;
+    border-radius: 5px;
+    width: 100%;
+}
+
+select {
+    font-family: 'Poppins', 'sans-serif';
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-weight: 200px;
+    font-size: 18px;
+}
+
+/* ------ Selectores especificos ------ */
+
+#nicka {
+    float: left;
+    font-family: 'Poppins', 'sans-serif';
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    width: 20px;
+    background-color: #ced4da;
+    border: 1px solid #ced4da;
+    border-radius: 5px 0px 0px 5px;
+    padding: 10px
+}
+
+.item-form #e-mail{
+    width: 478px;
+}

@@ -3,9 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <title>Master-Dots: The Game</title>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        
+        <header> <!--Inicio de cabecera-->
+            <img src="/img/logo-github.png" alt="Logo para el juego Master-Dots" width="150px">
+        </header> <!--Final de cabecera-->
+        <main> <!--Inicio del cuerpo/form-->
+            <form action="">
+                <div class="item-form"> <!--Nickname-->
+                    <label for="nickname">¿Cómo quieres ser llamado?: </label>
+                    <input type="text" name="nickname" value="@" id="nicka" readonly>
+                    <input type="text" name="nickname" id="nick" required>
+                </div>
+                <div class="item-form"> <!--Correo electronico-->
+                    <label for="e-mail">Correo electronico: </label>
+                    <input type="email" name="e-mail" id="e-mail" required>
+                </div>
+                <div class="item-form"> <!--Tamaño de matriz-->
+                    <label for="sizeGame">Selecciona el tamaño de la matriz: </label>
+                    <select name="sizeGame" id="sizeGame">
+                        <option value="1">4x4</option>
+                        <option value="2">6x6</option>
+                        <option value="3">8x8</option>
+                        <option value="4">10x10</option>
+                    </select>
+                </div>
+                <div class="item-form"> <!--Submit-->
+                    <input type="submit" value="Jugar">
+                </div>
+            </form>
+        </main> <!--Final del cuerpo/form-->
+        <footer> <!--Inicio de pie de pagina-->
+            <p>Curso FrontEnd HTML, CSS & JS</p>
+        </footer><!--Final de pie de pagina-->
+        <script src="/js/app.js"></script>
     </body>
 </html>
