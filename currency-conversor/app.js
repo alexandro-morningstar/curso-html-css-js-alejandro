@@ -5,7 +5,7 @@ let eurOut = document.getElementById("eur-out");
 let usdOut = document.getElementById("usd-out");
 let jpyOut = document.getElementById("jpy-out");
 let errorAdvertisement = document.getElementById("error");
-let regexNoLetters = /[^a-zA-Z]/;
+let regexNoLetters = /[^0-9]/g; // Excluye todo lo que no sean numeros, en todas las coincidencias a lo largo de la cadena
 
 // Funciones de eventos
 function mxnToJpy(event, mxnIn) {
@@ -40,9 +40,9 @@ function checkEntry(e){ //Funcion que comprueba los datos de entrada
         errorAdvertisement.innerText="El la cantidad a convertir no puede ser un número negativo"
         e.preventDefault();
         return false;
-    } else if (!regexNoLetters.test(currencyIn.value)) { //regexNoLetter.test retorna true si no hay letras
+    } else if (regexNoLetters.test(currencyIn.value)) { //regexNoLetter.test retorna true si no hay letras
         currencyIn.focus();
-        errorAdvertisement.innerText="Este campo no admite letras";
+        errorAdvertisement.innerText="Este campo solo acepta números";
         e.preventDefault();
         return false;
     } else {

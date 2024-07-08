@@ -13,28 +13,40 @@
     <body>
         <header>
             <img src="bolsa-monedas.png" alt="Logotipo de bolsa con monedas">
-            <h2>Conversor de pesos mexicanos</h2>
+            <h2 id="blinking-cursor">< Conversor de pesos mexicanos /></h2>
         </header>
         <div>
             <p id="error" style="color: red;"></p>
         </div>
         <main>
-            <form action="#" id="form-conversor">
-                <label for="mxn-In">Introduce la cantidad en pesos mexicanos (MXN): </label>
-                <input type="text" name="mxn-In" id="mxn-In" minlength="1" placeholder="$0.0" >
-                <input type="submit" value="Convertir" id="convert">
-            </form>
-            <div id="currency-out">
-                <label for="eur-out">Euro: </label>
-                <input type="text" name="eur-out" id="eur-out" placeholder="€0.0" readonly>
-                <label for="usd-out">Dolar (EEUU): </label>
-                <input type="text" name="usd-out" id="usd-out" placeholder="$0.0" readonly>
-                <label for="jpy-out">Yen (JPY): </label>
-                <input type="text" name="jpy-out" id="jpy-out" placeholder="¥0.0" readonly>
-            </div>
+            <section id="input">
+                <form action="#" id="form-conversor">
+                    <div id="form-up" class="form-section">
+                        <label for="mxn-In" id="main-label">Introduce la cantidad en pesos mexicanos (MXN) -> </label>
+                        <input type="text" name="mxn-In" id="mxn-In" minlength="1" placeholder="$0.0" >
+                    </div>
+                    <div class="form-section">
+                        <input type="submit" value="Convertir" id="convert">
+                    </div>
+                </form>
+            </section>
+            <section id="all-output">
+                <div>
+                    <label for="eur-out">Euro: </label>
+                    <input type="text" name="eur-out" id="eur-out" placeholder="€0.0" readonly>
+                </div>
+                <div>
+                    <label for="usd-out">Dolar (EEUU): </label>
+                    <input type="text" name="usd-out" id="usd-out" placeholder="$0.0" readonly>
+                </div>
+                <div>
+                    <label for="jpy-out">Yen (JPY): </label>
+                    <input type="text" name="jpy-out" id="jpy-out" placeholder="¥0.0" readonly>
+                </div>
+            </section>
         </main>
         <footer>
-            Alexandros
+            <p id="blinking-cross">Alexandros</p>
         </footer>
         <script src="app.js"></script>
     </body>
