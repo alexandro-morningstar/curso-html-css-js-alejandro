@@ -1,0 +1,20 @@
+/* Selectores Generales */
+body {
+    background-color: #020204;
+    color: #87bce2;
+}
+
+main {
+    width: 700px;
+    margin: 0px auto 0px auto;
+    border: 1px solid #151e26;
+
+}
+
+/* Selectores de Clase */
+
+
+/* Selectores de ID */
+#titulo {
+    text-align: center;
+}
