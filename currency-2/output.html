@@ -1,3 +1,5 @@
+<!-- Prueba de almacenamiento de datos temporales / SESSION STORAGE -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,34 +10,38 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
-        <title>Entrada</title>
+        <title>Salida</title>
+        <!-- <script src="app.js"></script> -->
+
     </head>
     <body>
         <header>
             <img src="../currency-conversor/bolsa-monedas.png" alt="Imagen de bolsa con monedas">
             <h2 id="blinking-cursor">< Conversor de pesos mexicanos /></h2>
         </header>
-        <div>
-            <p id="error" style="color: red;"></p>
-        </div>
         <main>
-            <section id="input">
-                <form action="output.html" id="form-conversor">
-                    <div id="form-up" class="form-section">
-                        <label for="mxn-In" id="main-label"> Introduce la cantidad en pesos mexicanos (mxn)</label>
-                        <input type="text" name="mxn-In" id="mxn-In" minlength="1" placeholder="$0.0">
+            <div>
+                <p id="error" style="color: red;"></p>
+            </div>
+                <section id="all-output">
+                    <div>
+                        <label for="eur-out">Euro: </label>
+                        <input type="text" name="eur-out" id="eur-out" placeholder="€0.0" readonly>
                     </div>
-                    <div class="form-section">
-                        <input type="submit" value="Convertir" id="convertir">
+                    <div>
+                        <label for="usd-out">Dolar (EEUU): </label>
+                        <input type="text" name="usd-out" id="usd-out" placeholder="$0.0" readonly>
                     </div>
-                </form>
+                    <div>
+                        <label for="jpy-out">Yen (JPY): </label>
+                        <input type="text" name="jpy-out" id="jpy-out" placeholder="¥0.0" readonly>
+                    </div>
             </section>
-            
         </main>
         <footer>
             <p id="blinking-cross">Alexandros</p>
         </footer>
         <script src="currency-data.js"></script>
-        <script src="app.js"></script>
+        <script src="output.js"></script>
     </body>
 </html>

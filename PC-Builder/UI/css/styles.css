@@ -1,0 +1,45 @@
+/* --------- Generic Selectors --------- */
+body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: darkgray ;
+    margin: 20px;
+}
+
+/* --------- Class Selectors --------- */
+.component {
+    align-content: center;
+    width: 110px;
+    height: 160px;
+    border: 1px solid black;
+}
+
+.componentInCart {
+    width: 110px;
+    height: 160px;
+    border: 1px solid black;
+}
+
+/* --------- ID Selectors --------- */
+#components-section {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#cart-section {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#cart {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

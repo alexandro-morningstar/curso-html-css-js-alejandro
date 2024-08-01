@@ -1,20 +1,76 @@
 /* Selectores Generales */
 body {
-    background-color: #020204;
-    color: #87bce2;
+    background-color: #FFEDDA;
+    width: 500px;
+    margin: 100px auto auto auto;
+    font-family: "IBM Plex Mono", "Sans-serif";
 }
 
-main {
-    width: 700px;
-    margin: 0px auto 0px auto;
-    border: 1px solid #151e26;
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
+#blinking-cursor::after {
+    content: "_";
+    animation: blink 1.5s infinite;
+}
+
+header h2 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+input{
+    border: 1px solid #7E391A;
+    border-radius: 3px;
+}
+
+input[type="submit"] {
+    background-color:  #D2AA86;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#blinking-cross::after, #blinking-cross::before {
+    content: " 𐕣 ";
+    animation: blink 2.0s infinite;
+}
+ 
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
 }
 
 /* Selectores de Clase */
-
+.form-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
 
 /* Selectores de ID */
-#titulo {
-    text-align: center;
+#form-up {
+    display: inline;
+}
+
+#main-label {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+#all-output {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }

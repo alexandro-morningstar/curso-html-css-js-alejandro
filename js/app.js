@@ -66,8 +66,9 @@ function formChecker(e) { // Función que al realizarse el evento submit (con id
         return false;
     }
     //Si toda la información es correcta, no debería pasar por ningún if
-    userData(nicknameInput, emailInput, sizeInput);
-    usersHistory(nicknameInput);
+    // Llamamos a la función userData (definida en userData.js, pasandole los parametros que guardará en el Session Storage)
+    userData(nicknameInput, emailInput, sizeInput); //Session Storage
+    usersHistory(nicknameInput); //Local Storage
     return true;
 };
 
@@ -85,8 +86,8 @@ function loadedDom() {
     userWelcome = document.getElementById("userWelcome");
 
 
-    // Comprobar si ha ocurrido un error
-    if (sessionStorage.getItem('error')!= null) { //Si existe 'error' (definido en userData (capa de datos?)) pero además es diferente de null (porque debió setearse como una string de error)
+    // Comprobar si ha ocurrido un error (generado en game.js, que nos haya regresado a index con un item de error para imprimirlo)
+    if (sessionStorage.getItem('error')!= null) { //Si existe 'error' (definido en userData) pero además es diferente de null (porque debió setearse como una string de error)
         errorAdvertisement.innerText=sessionStorage.getItem('error'); //Imprime error en index.html
         sessionStorage.removeItem('error'); //Elimina el error del sessionStorage
     }
