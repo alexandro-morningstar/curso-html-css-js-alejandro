@@ -24,14 +24,14 @@ let avatarCont;
 
 // --------- Funciones de evento ---------
 
-function imgChange(e) {
-    avatarCont.src=itemIMG.src; //la dirección source de la imagen actual, se va a cambiar por la almacenada de la imagen arrastrada, definida en moviendoImg()
-}
+// function imgChange(e) {
+//     avatarCont.src=itemIMG.src; //la dirección source de la imagen actual, se va a cambiar por la almacenada de la imagen arrastrada, definida en moviendoImg()
+// }
 
-function moviendoImg(event) {
-    itemIMG=event.target;
-    console.log(itemIMG.src);
-}
+// function moviendoImg(event) {
+//     itemIMG=event.target;
+//     console.log(itemIMG.src);
+// }
 
 /**
  * Todo se maneja con variables globales.
@@ -104,6 +104,15 @@ function loadedDom() {
     avatarCont.addEventListener("dragover", e => { e.preventDefault(); }); //prevent en over, para poder ejercutar drop
     avatarCont.addEventListener("drop", imgChange);
 
+}
+
+function moviendoImg(event) {
+    itemIMG=event.target;
+    console.log(itemIMG.src);
+}
+
+function imgChange(e) {
+    avatarCont.src=itemIMG.src; //la dirección source de la imagen actual, se va a cambiar por la almacenada de la imagen arrastrada, definida en moviendoImg()
 }
 
 // --------- Inicio de carga de eventos (Listeners) ---------

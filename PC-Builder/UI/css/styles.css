@@ -1,25 +1,67 @@
 /* --------- Generic Selectors --------- */
 body {
+    width: 806px;
+    margin: 20px auto auto auto;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap:  nowrap;
     gap: 10px;
     background-color: darkgray ;
-    margin: 20px;
+    padding: 10px;
+    border: 1px solid white;
+}
+
+@media(max-width: 810px) {
+    /*Si la pantalla es de menos de 810px de ancho...
+    ... el tamaño del body se divide en dos y aplica un wrap al flex*/
+    body {
+        width: 403px;
+        margin: 20px auto auto auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap:  wrap;
+        gap: 10px;
+        background-color: darkgray ;
+        
+        border: 1px solid white;
+    }
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 8px;
+}
+
+i {
+    padding-top: 28px;
 }
 
 /* --------- Class Selectors --------- */
 .component {
-    align-content: center;
-    width: 110px;
-    height: 160px;
+    margin-top: 5px;
+}
+
+.component, .componentInCart {
+    align-items: center;
+    text-align: center;
+    width: 55px;
+    height: 80px;
     border: 1px solid black;
+    border-radius: 3px;
+}
+
+.component:hover {
+    filter: invert(100%);
+    transition-duration: 0.5s;
+}
+
+.component img, .componentInCart img {
+    margin-top: 5px;
 }
 
 .componentInCart {
-    width: 110px;
-    height: 160px;
-    border: 1px solid black;
+    height: 75px;
 }
 
 /* --------- ID Selectors --------- */
@@ -28,7 +70,7 @@ body {
     flex-direction: row;
     gap: 10px;
     border: 1px solid black;
-    padding: 5px;
+    padding: 0px 5px 5px 5px; /*0px top para compensar el padding-top de .component*/
 }
 
 #cart-section {
@@ -42,4 +84,14 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+#trash-resume {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+#trash {
+    margin-top: 5px;
 }
