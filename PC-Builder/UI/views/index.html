@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://kit.fontawesome.com/aca4f49d6f.js" crossorigin="anonymous"></script>
-        <!-- <link rel="stylesheet" href="reset.css"> -->
+        <!-- <link rel="stylesheet" href="../css/reset.css"> -->
         <link rel="stylesheet" href="../css/styles.css">
         <title>Document</title>
     </head>
@@ -75,7 +75,7 @@
                     <img src="../img/generic-gpu.png" class="GPU" width="50" draggable="true" alt="Generic GPU icon">
                     <p class="component-description">Radeon RX6600</p>
                     <p class="component-price">$3,899mxn</p>
-                    <input hidden type="number" value="" class="component-price" readonly>
+                    <input hidden type="number" value="3899" class="component-price" readonly>
                 </div>
                 <div class="component">
                     <img src="../img/generic-gpu.png" class="GPU" width="50" draggable="true" alt="Generic GPU icon">
@@ -162,11 +162,18 @@
                 <div id="trash" class="componentInCart">
                     <i class="fa-regular fa-trash-can" style="color: #000000;"></i>
                 </div>
-                <div>
-                    <h2>zona de calculo de costo</h2>
+                <div id="cost">
+                    <h2>Total: $</h2>
+                    <h2 id="totalCost"></h2>
                 </div>
+            </article>
+            <article id="confirm">
+                <form action="purcharse.html">
+                    <button type="submit">Proceder con pedido</button>
+                </form>
             </article>
         </section>
         <script src="../../Controller/app.js"></script>
+        <script src="../../Controller/purcharseData.js"></script>
     </body>
 </html>

@@ -9,19 +9,43 @@ var imgSlot;
 var nameSlot;
 var classSlot;
 var trashCan;
+var costSelector;
+var itemCost; //Valor temporal del componente elegido
+var totalCost = 0; //Aqui se va sumando el valor del costo total de los componentes
+var showCost; //Aqui se guardará el elemento HTML
+var checkIn;
 
 // --------- Event Functions ---------
+function collectAllData(e) {
+    let MoBo = document.getElementById("MoBo");
+    // SIGUIETE ACTIVIDAD: obtener todos los datos necesarios de cada componente en el carrito para meterlos al session storage
+    // Si algún slot del carrito está vacio, mandar alerta y no pasar al check-in (idear como comporbar [Pista: valores por defecto del img.src])
+    // setTest(MoBo);
+}
+
+function costSubtraction() {
+    totalCost -= itemCost;
+    showCost.innerText=totalCost;
+}
+
+function sumTotal(e) {
+    totalCost += itemCost;
+    showCost.innerText=totalCost;
+}
+
 /**
  * Obtiene la información de un componente seleccionado (detonado por un evento dragstart)
  * Siempre traeremos un div que puede contener <img>, <p> y/o <input>
  */
-function getComponentInfo() {
+function getComponentInfo(e) {
     imgSelector = this.querySelector("img"); //Guardamos la etiqueta <img> (de la sección componentes)
     nameSelector = this.querySelector("p"); //Guardamos la etiqueta <p> (de la sección componentes)
-    if (imgSelector && nameSelector) { // Verificamos que sí exista información dentro de nuestras variables (que si exista etiqueta guardada).
+    costSelector = this.querySelector("input");
+    if (imgSelector && nameSelector && costSelector) { // Verificamos que sí exista información dentro de nuestras variables (que si exista etiqueta guardada).
         classComponent = imgSelector.className; //Guardamos el valor (nombre) del atributo class=""
         imgComponent = imgSelector.src; //Guardamos le valor del atributo src=""
         nameComponent = nameSelector.innerText; //Guardamos el valor (texto) contenido en la etiqueta <p>
+        itemCost = parseInt(costSelector.value); //Guardamos el valor (en Int) contenido en el atributo value="" de la etiqueta <input>
     }
 }
 
@@ -29,18 +53,21 @@ function getComponentInfo() {
  * Asigna los valores correspondientes de un componente seleccionado (con info obtenida después de un evento dragstart)
  * a su espacio en la sección de carrito, comparando con los classname que sea del tipo correcto de componente para evitar repeticiones
  */
-function setComponentInfo() {
+function setComponentInfo(e) {
     imgSlot = this.querySelector("img"); //Guardamos la etiqueta <img> (de la sección carrito)
     nameSlot = this.querySelector("p"); //Guardamos la etiqueta <p> (de la sección carrito)
-    if (imgSlot && nameSlot) { //Comprobamos que si existan
+    let srcImgSlot = imgSlot.src; //Variable que almacena en tiempo real el source de la imagen del slot (carrito) (antes de setear el nuevo valor)
+    if (imgSlot && nameSlot && (srcImgSlot.endsWith("html"))) { //Comprobamos que si existan y si no hay ya alguna imagen (si no termina en html, significa que ya hay un producto)
         classSlot = imgSlot.className; //Guardamos el nombre de la clase del slot para saber si es el slot del componente a guardar
         if (classComponent == classSlot) { //Si el classname del componente es el mismo que el del slot, entonces se guarda (setea/asigna) la nueva información
-            imgSlot.src=imgComponent; //El valor del atributo src de la etiqueta <img> en el slot, se sustituye por la traida por el componente
-            nameSlot.innerText=nameComponent; //El valor (texto) de la etiqueta <p> en el slot, se sustituye por la traida por el componente.
+            imgSlot.src=imgComponent; //El valor del atributo src de la etiqueta <img> en el slot, se sustituye por la traida por el componente            nameSlot.innerText=nameComponent; //El valor (texto) de la etiqueta <p> en el slot, se sustituye por la traida por el componente.
+            sumTotal(); // ########### NOTA: Solamente si ya se seteo la nueva info, se hace la suma del costo total ###########
         } else { //Si no coinciden los classname, no deja guardar
             window.alert("Solamente puedes poner componentes en su respectiva caja.");
             return false;
         }
+    } else {
+        window.alert("Ya hay un componente en este slot!")
     }
 }
 
@@ -49,9 +76,9 @@ function setComponentInfo() {
  * asignando el nombre de la clase al valor de la etiqueta <p> que coincide es el mismo texto del componente
  * y "borrando" el nombre del src="" de la imagen del slot, para que de nuevo esté vacía.
  */
-function dropComponent() {
+function dropComponent(e) {
     /* Recuperamos el elemento e info actual del elemento HTML que deseamos eliminar
-    El nombre del ID es lo que en ese momento trae la variable classComponent (se ejecuta durante el dragstart del item en el cart) */
+    El nombre del ID (ID de los slots del carrito) es lo que en ese momento contiene la variable classComponent (se ejecuta durante el dragstart del item en el cart) */
     let toDrop = document.getElementById(classComponent);
     
     //Obtenemos los elementos a los que setearemos sus valores (manualmente) que tenían por defecto
@@ -62,6 +89,7 @@ function dropComponent() {
     //Seteamos ("Reseteamos") los valores.
     resetImgElement.src=""; //El source de la imagen lo dejamos vacío, para que ya no tenga imagen.
     resetPElement.innerText=getClassNameElement; //El texto de <p> se setea con el classname, que da la casualidad que es el mismo que debería tener por defecto
+    costSubtraction(); //Restamos el valor del producto que dropeamos del costo total
 }
 
 // --------- DOM objects loading ---------
@@ -75,6 +103,8 @@ function init(e) {
     components = document.getElementsByClassName("component"); //Seleccionamos todos los elementos HTML con class='component'
     SelectedComponents = document.getElementsByClassName("componentInCart"); //Seleccionamos todos los elementos HTML con class="componentInCart"
     trashCan = document.getElementById("trash"); //Elemento HTML que servirá como "bote de basura" al realizar un drop dentro de él.
+    showCost = document.getElementById("totalCost");
+    checkIn = document.getElementById("confirm");
 
     // ------ Drag and Drop Events ------
 
@@ -86,6 +116,7 @@ function init(e) {
     for (let slot of SelectedComponents) { //Recorremos todos los elementos HTML con class="componentInCart"
         slot.addEventListener("dragover", e => { e.preventDefault(); }); //Agregamos listener de evento "dragover" y le asignamos la función de preventDefault() para que permita el drop
         slot.addEventListener("drop", setComponentInfo); //Al soltar (evento "drop") se llama la función setComponentInfo
+
         /*Sí iniciamos un evento "dragstart" desde un elemento HTML perteneciente a la zona de carrito
         llamamos de nuevo a getComponentInfo para actualizar la info de las variables con el componente actual
         esta información recupara de nuevo nos sirve como referencia para eliminar un componente*/
@@ -95,6 +126,9 @@ function init(e) {
     //Eliminar componentes del carrito
     trashCan.addEventListener("dragover", e => { e.preventDefault(); });
     trashCan.addEventListener("drop", dropComponent); //Cuando soltamos un componente del carrito al "bote de basura", llamamos a dropComponent
+
+    //Juntar toda la info para guardarla en el Session Storage y cambiar de pagina
+    checkIn.addEventListener("submit", collectAllData);
 }
 
 // --------------- DOM Listener ---------------

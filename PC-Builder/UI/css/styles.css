@@ -95,3 +95,13 @@ i {
 #trash {
     margin-top: 5px;
 }
+
+#cost {
+    display: flex;
+    flex-direction: row;
+}
+
+#confirm {
+    text-align: center;
+    margin-top: 20px;
+}
