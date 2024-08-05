@@ -16,11 +16,67 @@ var showCost; //Aqui se guardará el elemento HTML
 var checkIn;
 
 // --------- Event Functions ---------
-function collectAllData(e) {
+function collectMoBoInCart() {
     let MoBo = document.getElementById("MoBo");
-    // SIGUIETE ACTIVIDAD: obtener todos los datos necesarios de cada componente en el carrito para meterlos al session storage
-    // Si algún slot del carrito está vacio, mandar alerta y no pasar al check-in (idear como comporbar [Pista: valores por defecto del img.src])
-    // setTest(MoBo);
+    let MoBoImg = MoBo.querySelector("img");
+    let MoBoImgSrc = MoBoImg.src; //source de la imagen - guardar
+    let MoBoDescription = MoBo.querySelector("p");
+    let MoBoDescriptionText = MoBoDescription.innerText; //guardar
+    saveMoBoInStorage(MoBoImgSrc,MoBoDescriptionText); //Función definida en purcharseData.js
+};
+
+function collectCpuInCart() {
+    let cpu = document.getElementById("CPU");
+    let cpuImg = cpu.querySelector("img");
+    let cpuImgSrc = cpuImg.src; //source de la imagen - guardar
+    let cpuDescription = cpu.querySelector("p");
+    let cpuDescriptionText = cpuDescription.innerText; //guardar
+    saveCpuInStorage(cpuImgSrc,cpuDescriptionText); //Función definida en purcharseData.js
+};
+
+function collectRamInCart() {
+    let ram = document.getElementById("RAM");
+    let ramImg = ram.querySelector("img");
+    let ramImgSrc = ramImg.src; //source de la imagen - guardar
+    let ramDescription = ram.querySelector("p");
+    let ramDescriptionText = ramDescription.innerText; //guardar
+    saveRamInStorage(ramImgSrc,ramDescriptionText); //Función definida en purcharseData.js
+};
+
+function collectGpuInCart() {
+    let gpu = document.getElementById("GPU");
+    let gpuImg = gpu.querySelector("img");
+    let gpuImgSrc = gpuImg.src; //source de la imagen - guardar
+    let gpuDescription = gpu.querySelector("p");
+    let gpuDescriptionText = gpuDescription.innerText; //guardar
+    saveRamInStorage(gpuImgSrc,gpuDescriptionText); //Función definida en purcharseData.js
+}
+
+function collectHddInCart() {
+    let hdd = document.getElementById("HDD");
+    let hddImg = hdd.querySelector("img");
+    let hddImgSrc = hddImg.src; //source de la imagen - guardar
+    let hddDescription = hdd.querySelector("p");
+    let hddDescriptionText = hddDescription.innerText; //guardar
+    saveRamInStorage(hddImgSrc,hddDescriptionText); //Función definida en purcharseData.js
+}
+
+function collectPsuInCart() {
+    let psu = document.getElementById("PSU");
+    let psuImg = psu.querySelector("img");
+    let psuImgSrc = psuImg.src; //source de la imagen - guardar
+    let psuDescription = psu.querySelector("p");
+    let psuDescriptionText = psuDescription.innerText; //guardar
+    saveRamInStorage(psuImgSrc,psuDescriptionText); //Función definida en purcharseData.js
+}
+
+function collectAllCartData(e) {
+    collectMoBoInCart() //Motherboard
+    collectCpuInCart() //CPU
+    collectRamInCart() //RAM
+    collectGpuInCart() //GPU
+    collectHddInCart() //HDD
+    collectPsuInCart() //PSU
 }
 
 function costSubtraction() {
@@ -128,7 +184,7 @@ function init(e) {
     trashCan.addEventListener("drop", dropComponent); //Cuando soltamos un componente del carrito al "bote de basura", llamamos a dropComponent
 
     //Juntar toda la info para guardarla en el Session Storage y cambiar de pagina
-    checkIn.addEventListener("submit", collectAllData);
+    checkIn.addEventListener("submit", collectAllCartData);
 }
 
 // --------------- DOM Listener ---------------
