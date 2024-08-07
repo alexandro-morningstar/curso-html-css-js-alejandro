@@ -3,10 +3,49 @@ body {
     width: 806px;
     margin: 20px auto auto auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap:  nowrap;
     gap: 10px;
     background-color: darkgray ;
     padding: 10px;
     border: 1px solid white;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 8px;
+}
+
+i {
+    padding-top: 28px;
+}
+/* --------- Class Selectors --------- */
+.componentInCart {
+    align-items: center;
+    text-align: center;
+    width: 55px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.componentInCart img {
+    margin-top: 5px;
+}
+
+.componentInCart {
+    height: 75px;
+}
+
+/* --------- ID Selectors --------- */
+#components-summary {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+#totalCost {
+    margin-top: 20px;
 }

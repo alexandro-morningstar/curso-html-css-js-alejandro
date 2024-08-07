@@ -49,7 +49,7 @@ function collectGpuInCart() {
     let gpuImgSrc = gpuImg.src; //source de la imagen - guardar
     let gpuDescription = gpu.querySelector("p");
     let gpuDescriptionText = gpuDescription.innerText; //guardar
-    saveRamInStorage(gpuImgSrc,gpuDescriptionText); //Función definida en purcharseData.js
+    saveGpuInStorage(gpuImgSrc,gpuDescriptionText); //Función definida en purcharseData.js
 }
 
 function collectHddInCart() {
@@ -58,7 +58,7 @@ function collectHddInCart() {
     let hddImgSrc = hddImg.src; //source de la imagen - guardar
     let hddDescription = hdd.querySelector("p");
     let hddDescriptionText = hddDescription.innerText; //guardar
-    saveRamInStorage(hddImgSrc,hddDescriptionText); //Función definida en purcharseData.js
+    saveHddInStorage(hddImgSrc,hddDescriptionText); //Función definida en purcharseData.js
 }
 
 function collectPsuInCart() {
@@ -67,7 +67,7 @@ function collectPsuInCart() {
     let psuImgSrc = psuImg.src; //source de la imagen - guardar
     let psuDescription = psu.querySelector("p");
     let psuDescriptionText = psuDescription.innerText; //guardar
-    saveRamInStorage(psuImgSrc,psuDescriptionText); //Función definida en purcharseData.js
+    savePsuInStorage(psuImgSrc,psuDescriptionText); //Función definida en purcharseData.js
 }
 
 function collectAllCartData(e) {
@@ -77,6 +77,7 @@ function collectAllCartData(e) {
     collectGpuInCart() //GPU
     collectHddInCart() //HDD
     collectPsuInCart() //PSU
+    saveTotalCostInStorage(totalCost) //Total Cost
 }
 
 function costSubtraction() {
@@ -101,6 +102,7 @@ function getComponentInfo(e) {
         classComponent = imgSelector.className; //Guardamos el valor (nombre) del atributo class=""
         imgComponent = imgSelector.src; //Guardamos le valor del atributo src=""
         nameComponent = nameSelector.innerText; //Guardamos el valor (texto) contenido en la etiqueta <p>
+        console.log(nameComponent);
         itemCost = parseInt(costSelector.value); //Guardamos el valor (en Int) contenido en el atributo value="" de la etiqueta <input>
     }
 }
@@ -117,6 +119,7 @@ function setComponentInfo(e) {
         classSlot = imgSlot.className; //Guardamos el nombre de la clase del slot para saber si es el slot del componente a guardar
         if (classComponent == classSlot) { //Si el classname del componente es el mismo que el del slot, entonces se guarda (setea/asigna) la nueva información
             imgSlot.src=imgComponent; //El valor del atributo src de la etiqueta <img> en el slot, se sustituye por la traida por el componente            nameSlot.innerText=nameComponent; //El valor (texto) de la etiqueta <p> en el slot, se sustituye por la traida por el componente.
+            nameSlot.innerText=nameComponent;
             sumTotal(); // ########### NOTA: Solamente si ya se seteo la nueva info, se hace la suma del costo total ###########
         } else { //Si no coinciden los classname, no deja guardar
             window.alert("Solamente puedes poner componentes en su respectiva caja.");
@@ -162,6 +165,12 @@ function init(e) {
     showCost = document.getElementById("totalCost");
     checkIn = document.getElementById("confirm");
 
+    // ------ Check for error items in Session Storage ------
+    if (sessionStorage.getItem("missing-data")!=null) {
+        let error = document.getElementById("error");
+        error.innerText=sessionStorage.getItem("missing-data");
+        sessionStorage.removeItem("missing-data");
+    }
     // ------ Drag and Drop Events ------
 
     //Agregar componentes al carrito
@@ -188,4 +197,5 @@ function init(e) {
 }
 
 // --------------- DOM Listener ---------------
+
 document.addEventListener("DOMContentLoaded", init);
