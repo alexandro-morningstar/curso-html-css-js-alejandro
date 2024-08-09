@@ -78,6 +78,11 @@ function collectAllCartData(e) {
     collectHddInCart() //HDD
     collectPsuInCart() //PSU
     saveTotalCostInStorage(totalCost) //Total Cost
+    if (checkAllComponentsExist == false) {
+        window.alert("No haz llenado todo el carrito de compras");
+        e.preventDefault();
+        return false;
+    }
 }
 
 function costSubtraction() {

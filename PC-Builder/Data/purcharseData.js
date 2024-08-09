@@ -52,12 +52,18 @@ let saveTotalCostInStorage = (totalCost) => { //Arrow porque sí.
 //Función para revisar que exista la imagen de todos los componentes, si no, regresar a la pagina anterior.
 function checkAllComponentsExist() {
     moboExist = sessionStorage.getItem("moboDescription");
+    console.log(moboExist);
     cpuExist = sessionStorage.getItem("cpuDescription");
+    console.log(cpuExist);
     ramExist = sessionStorage.getItem("ramDescription");
+    console.log(ramExist);
     gpuExist = sessionStorage.getItem("gpuDescription");
+    console.log(gpuExist);
     hddExist = sessionStorage.getItem("hddDescription");
+    console.log(hddExist);
     psuExist = sessionStorage.getItem("psuDescription");
-    if (moboExist!=null && cpuExist!=null && ramExist!=null && gpuExist!=null && hddExist!=null && psuExist!=null) {
+    console.log(psuExist);
+    if (moboExist!="MoBo" && cpuExist!="CPU" && ramExist!="RAM" && gpuExist!="GPU" && hddExist!="HDD" && psuExist!="PSU") {
         return true;
     } else {
         sessionStorage.setItem("missing-data", "Tienes que llenar todos los slots del carrito de compras (:");
